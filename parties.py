@@ -34,6 +34,24 @@ def get_most_noisy_city_and_borough(data):
 
     # write code here to find the noisiest city and borough and their respective metrics
 
+    num_city_calls = {}
+    num_borough_calls = {}
+    for entry in data:
+        if (not entry['city'] in num_city_calls.keys()):
+            if (entry['city'] != 'City'):
+                num_city_calls.update({entry['city']: 0})
+        else:
+            num_city_calls[entry['city']] += int(entry['num_calls'])
+        if (not entry['borough'] in num_borough_calls.keys()):
+            if (entry['borough'] != 'Borough' and entry['borough'] != 'Unspecified'):
+                num_borough_calls.update({entry['borough']: 0})
+        else:
+            num_borough_calls[entry['borough']] += int(entry['num_calls'])
+
+    city_max = max(num_city_calls.keys(),  key = lambda x: num_city_calls[x])
+    borough_max = max(num_borough_calls.keys(), key = lambda x: num_borough_calls[x])
+    noisiest_city_and_borough = {'city': city_max, 'borough': borough_max, 'num_city_calls': num_city_calls[city_max], 'num_borough_calls': num_borough_calls[borough_max]}
+    
     return noisiest_city_and_borough
 
 
@@ -43,6 +61,24 @@ def get_quietest_city_and_borough(data):
     quietest_city_and_borough = {'city': None, 'borough': None, 'num_city_calls': None, 'num_borough_calls': None}
 
     # write code here to find the quietest city and borough and their respective metrics
+
+    num_city_calls = {}
+    num_borough_calls = {}
+    for entry in data:
+        if (not entry['city'] in num_city_calls.keys()):
+            if (entry['city'] != 'City'):
+                num_city_calls.update({entry['city']: 0})
+        else:
+            num_city_calls[entry['city']] += int(entry['num_calls'])
+        if (not entry['borough'] in num_borough_calls.keys()):
+            if (entry['borough'] != 'Borough' and entry['borough'] != 'Unspecified'):
+                num_borough_calls.update({entry['borough']: 0})
+        else:
+            num_borough_calls[entry['borough']] += int(entry['num_calls'])
+
+    city_min = min(num_city_calls.keys(),  key = lambda x: num_city_calls[x])
+    borough_min = min(num_borough_calls.keys(), key = lambda x: num_borough_calls[x])
+    quietest_city_and_borough = {'city': city_min, 'borough': borough_min, 'num_city_calls': num_city_calls[city_min], 'num_borough_calls': num_borough_calls[borough_min]}
 
     return quietest_city_and_borough
 
