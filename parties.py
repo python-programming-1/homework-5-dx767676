@@ -39,12 +39,12 @@ def get_most_noisy_city_and_borough(data):
     for entry in data:
         if (not entry['city'] in num_city_calls.keys()):
             if (entry['city'] != 'City'):
-                num_city_calls.update({entry['city']: 0})
+                num_city_calls.update({entry['city']: int(entry['num_calls'])})
         else:
             num_city_calls[entry['city']] += int(entry['num_calls'])
         if (not entry['borough'] in num_borough_calls.keys()):
             if (entry['borough'] != 'Borough' and entry['borough'] != 'Unspecified'):
-                num_borough_calls.update({entry['borough']: 0})
+                num_borough_calls.update({entry['borough']: int(entry['num_calls'])})
         else:
             num_borough_calls[entry['borough']] += int(entry['num_calls'])
 
@@ -67,12 +67,12 @@ def get_quietest_city_and_borough(data):
     for entry in data:
         if (not entry['city'] in num_city_calls.keys()):
             if (entry['city'] != 'City'):
-                num_city_calls.update({entry['city']: 0})
+                num_city_calls.update({entry['city']: int(entry['num_calls'])})
         else:
             num_city_calls[entry['city']] += int(entry['num_calls'])
         if (not entry['borough'] in num_borough_calls.keys()):
             if (entry['borough'] != 'Borough' and entry['borough'] != 'Unspecified'):
-                num_borough_calls.update({entry['borough']: 0})
+                num_borough_calls.update({entry['borough']: int(entry['num_calls'])})
         else:
             num_borough_calls[entry['borough']] += int(entry['num_calls'])
 
